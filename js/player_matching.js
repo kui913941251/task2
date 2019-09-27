@@ -11,6 +11,7 @@ window.onload=function(){
 	var start = document.getElementById("start");
 	//获取输入的人数
 	var num = document.getElementById("num");
+
 	start.onclick=function(){
 		//限制输入人数
 		//获取输入的人数		
@@ -20,19 +21,31 @@ window.onload=function(){
 			window.location.href="view_identity.html";
 		}
 	}
-	//在设置输入玩家数量，获取焦点时
-	num.onfocus=function(){
-		if(this.value == 4){
-			this.value="";
-		}
+	//水民人数
+	var people = document.getElementById("blue_gray");	 
+	//杀手人数
+	var killer = document.getElementById("yellow_gray");
+	//默认人数分配
+	if(num.value >=4 && num.value <=8 ){
+			blue_gray.innerHTML= " "+(num.value-2)+" 人";
+			yellow_gray.innerHTML=" "+2+" 人";
 	}
-	num.onblur=function(){
-		if(this.value == ""){
-			this.value=4; 
-		}
+	//建立input值改变时的触发函数
+	num.oninput=function(){
+		//设置值必须为数字的正则
+		num.value=num.value.replace(/[^0-9]/,"");
+		//人数分配
+		people_distribution();
+		//设置人数变化时，进度条变化
+		rg.value=num.value;
 	}
-	//进度条数值绑定
-		var rg = document.getElementById("rg");
+	//设置获取焦点时，值为""
+	/*num.onfocus=function(){
+		num.value="";
+	}*/
+	
+	//设置进度条
+	var rg = document.getElementById("rg");
 		rg.min=4;
 		rg.max=18;
 		rg.step=1;
@@ -41,34 +54,50 @@ window.onload=function(){
 			num.value=rg.value;
 			num.oninput();
 		} 
-	//加减号控制进度条
+	
+	//设置加减号控制进度条
 	var reduce=document.getElementById("reduce");
 	var plus  =document.getElementById("plus");
 	//创建加减号单击响应函数
 	plus.onclick=function(){
 		rg.value++;
 		num.value=rg.value;
+		num.oninput();
 	}
 	reduce.onclick=function(){
 		rg.value--;
 		num.value=rg.value;
+		num.oninput();
 	}
 	
-	//获取  点击设置 ， 并创建单击响应函数
-	num.oninput=function(){
-		rg.value=num.value;
-		//限制输入数字
-		num.value=num.value.replace(/[^0-9]/,'');
-		/*if(num.value=""){
-			rg.value=4;
-		}*/
-		//水民人数
-		var people = document.getElementById("blue_gray");
-		 
-		//杀手人数
-		var killer = document.getElementById("yellow_gray");
-		
-		//分配人数
+	//获取滑轮事件
+		num.onmousewheel=function(event){
+			event = event || window.event;
+			if(event.wheelDelta>0){
+				num.value++;
+				rg.value=num.value;
+				if(num.value<4){
+					num.value=4
+				}else if(num.value>18){
+					num.value=18;
+				}
+				people_distribution();
+			}else{
+				num.value--;
+				rg.value=num.value;
+				
+				if(num.value<4){
+					num.value=4
+				}else if(num.value>18){
+					num.value=18;
+				}
+				people_distribution();
+			}
+			console.log(num.value);
+		}
+	
+	//建立人数分配函数
+	function people_distribution(){
 		if(num.value >=4 && num.value <=8 ){
 			blue_gray.innerHTML= " "+(num.value-2)+" 人";
 			yellow_gray.innerHTML=" "+2+" 人";
@@ -83,5 +112,4 @@ window.onload=function(){
 			yellow_gray.innerHTML=" "+0+" 人";
 		}
 	}
-			
 } 
