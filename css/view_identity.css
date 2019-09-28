@@ -24,6 +24,7 @@ body {
   cursor: pointer;
 }
 .content {
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -34,7 +35,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 50px;
+  margin-top: 30px;
 }
 .content .d1 img {
   width: 232px;
@@ -47,8 +48,11 @@ body {
   top: 7px;
   left: 110px;
 }
-.content .btn {
-  margin-top: 60px;
+.btn {
+  position: absolute;
+  left: 50%;
+  margin-left: -125px;
+  bottom: 20px;
   width: 250px;
   height: 40px;
   color: white;
@@ -57,7 +61,7 @@ body {
   justify-content: center;
   align-items: center;
 }
-.content .btn:hover {
+.btn:hover {
   cursor: pointer;
 }
 /*# sourceMappingURL=view_identity.css.map */

@@ -27,6 +27,7 @@ body{
 }
 //header结束
 .content{
+    height:100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -36,7 +37,7 @@ body{
         display: flex;
         flex-direction: column;
         align-items: center;
-        margin-top: 50px;
+        margin-top: 30px;
         img{      
             width: 232px;
             height:343px;
@@ -49,18 +50,21 @@ body{
             left: 110px;
         }
     }
-    .btn{
-        margin-top: 60px;
-        width:250px;
-        height: 40px;
-        color: white;
-        background-color: #fbb435;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        &:hover{
-            cursor: pointer;
-        }
+    
+}
+.btn{
+    position:absolute;
+    left:50%;
+    margin-left:-125px;
+    bottom: 20px;
+    width:250px;
+    height: 40px;
+    color: white;
+    background-color: #fbb435;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &:hover{
+        cursor: pointer;
     }
 }
-
