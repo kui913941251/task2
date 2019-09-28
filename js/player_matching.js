@@ -34,7 +34,7 @@ window.onload=function(){
 	//建立input值改变时的触发函数
 	num.onchange=function(){
 		//设置值必须为数字的正则
-		//num.value=num.value.replace(/[^0-9]/,"");
+		num.value=num.value.replace(/[^0-9]/g,"");
 		
 		if(num.value<4 || num.value>18){
 			alert("请输入正确的玩家数量");
@@ -67,12 +67,12 @@ window.onload=function(){
 	//创建加减号单击响应函数
 	plus.onclick=function(){
 		num.value++;
-		rg.value=num.value;
+		//rg.value=num.value;
 		num.onchange();
 	}
 	reduce.onclick=function(){
 		num.value--;
-		rg.value=num.value;
+		//rg.value=num.value;
 		num.onchange();
 	}
 	
