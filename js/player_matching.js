@@ -17,6 +17,7 @@ window.onload=function(){
 		//获取输入的人数		
 		if(num.value<4 || num.value>18){
 			alert("请输入正确的玩家数量");
+			num.value=4;
 		}else{
 			window.location.href="view_identity.html";
 		}
@@ -31,9 +32,14 @@ window.onload=function(){
 			yellow_gray.innerHTML=" "+2+" 人";
 	}
 	//建立input值改变时的触发函数
-	num.oninput=function(){
+	num.onchange=function(){
 		//设置值必须为数字的正则
-		num.value=num.value.replace(/[^0-9]/,"");
+		//num.value=num.value.replace(/[^0-9]/,"");
+		
+		if(num.value<4 || num.value>18){
+			alert("请输入正确的玩家数量");
+			num.value=4;
+		}
 		//人数分配
 		people_distribution();
 		//设置人数变化时，进度条变化
@@ -52,7 +58,7 @@ window.onload=function(){
 		rg.value=4;
 		rg.onchange=function(){
 			num.value=rg.value;
-			num.oninput();
+			num.onchange();
 		} 
 	
 	//设置加减号控制进度条
@@ -60,14 +66,14 @@ window.onload=function(){
 	var plus  =document.getElementById("plus");
 	//创建加减号单击响应函数
 	plus.onclick=function(){
-		rg.value++;
-		num.value=rg.value;
-		num.oninput();
+		num.value++;
+		rg.value=num.value;
+		num.onchange();
 	}
 	reduce.onclick=function(){
-		rg.value--;
-		num.value=rg.value;
-		num.oninput();
+		num.value--;
+		rg.value=num.value;
+		num.onchange();
 	}
 	
 	//获取滑轮事件
